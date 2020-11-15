@@ -3,6 +3,7 @@ import Game from "./game.js";
 let canvas = document.getElementById("gameCanvas");
 let context = canvas.getContext("2d");
 let lastTime = 0;
+let deltaTime = 0;
 const TILE_WIDTH = 40;//px
 const TILE_HEIGTH = 40;//px
 const TOTALTILESON_X = 10;//Number of tiles !!!!!!!!!!!!!!!!
@@ -24,7 +25,7 @@ function gameLoop(timeStamp) {
     //Clear canvas for current frame
     context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGTH);
     //deltaTime: Amount of time elapsed since last frame. It is important to update positions based on the elapsed time.
-    let deltaTime = timeStamp - lastTime;
+    deltaTime = (timeStamp - lastTime);//In seconds
     lastTime = timeStamp;
     //==========Update and draw the game in here============
     game.update(deltaTime);
