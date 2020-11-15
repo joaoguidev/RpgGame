@@ -3,6 +3,7 @@ export default class Player {
     constructor(game) {
         this.width = 20;
         this.heigth = 20;
+        this.speed = 5;
         this.position = {
             x: 100,
             y: 100,
@@ -28,6 +29,6 @@ export default class Player {
         if(!deltaTime) {
             return;
         }
-        this.position.x += 1/deltaTime;
+        this.position.x += deltaTime * this.speed ;
     }
 }
