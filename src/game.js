@@ -1,36 +1,43 @@
 "use strict";
-import Card from "./player.js";
-//const { default: Card } = require("./card");
-let canvas = document.getElementById("gameCanvas");
-let context = canvas.getContext("2d");
-let lastTime = 0;
-const CANVAS_WIDTH = 800; //px
-const CANVAS_HEIGTH = 600; //px
+import Player from "./player.js";
+import Map from "./map.js";
 
-//========================Constructors=========================
-let card = new Card();
+export default class Game {
+    constructor(
+        gameWidth,
+        gameHeigth,
+        tileWidth,
+        tileHeigth,
+        totalTilesOn_X,
+        totalTilesOn_Y
+    ) {
+        this.gameWidth = gameWidth;
+        this.gameHeigth = gameHeigth;
+        this.tileWidth = tileWidth; //px
+        this.tileHeigth = tileHeigth; //px
+        this.totalTilesOn_X = totalTilesOn_X; //Number of tiles
+        this.totalTilesOn_Y = totalTilesOn_Y; //Number of tiles
+        this.mapLoaded = true;
+    }
 
+    start() {
+        //========================Game Objects=========================
+        this.player = new Player(this);
+        this.map = new Map(this);
+        //Array of game objects that enables it to be update and drawn looping through it. Just add the object here and it will be updated and drawn.
+        this.gameObjects = [this.player];
+    }
 
+    update(deltaTime) {
+        this.gameObjects.forEach((object) => object.update(deltaTime));
+    }
 
+    draw(context) {
+        //if (!this.mapLoaded) {
+            this.map.draw(context);
+            this.mapLoaded = true;
 
-
-
-
-
-//==============================Game Loop============================
-function gameLoop(timeStamp) {
-    let deltaTime = timeStamp - lastTime;
-    lastTime = timeStamp;
-    context.save();
-    context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGTH);
-    context.fillStyle = "green";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    context.restore();
-    
-    //==========Update and draw stuff in here============
-    
-    card.draw(context);
-    //===================================================
-    requestAnimationFrame(gameLoop);
+       // }
+        this.gameObjects.forEach((object) => object.draw(context));
+    }
 }
-gameLoop();
