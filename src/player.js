@@ -1,9 +1,9 @@
 "use strict";
 export default class Player {
     constructor(game) {
-        this.width = 20;
-        this.heigth = 20;
-        this.speed = 20;
+        this.width = 25;
+        this.heigth = 25;
+        this.speed = 35;
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
@@ -33,7 +33,7 @@ export default class Player {
 //========================draw=========================
     draw(context) {
         // context.drawImage(this.texture, 64,0,   this.position.x, this.position.y, this.width,this.heigth);
-        context.drawImage(this.texture, 45,35, 40,55,this.position.x, this.position.y, this.width, this.heigth);
+        context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
     }
 
     //========================update=========================
