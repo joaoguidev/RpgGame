@@ -35,7 +35,7 @@ let game = new Game(
     TILE_HEIGTH,
     TOTALTILESON_X,
     TOTALTILESON_Y,
-    canvasPositionOnViewport
+    canvasPositionOnViewport,
 );
 game.start();
 

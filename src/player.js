@@ -3,10 +3,12 @@ export default class Player {
     constructor(game) {
         this.width = 25;
         this.heigth = 25;
-        this.speed = 35;
+        this.speed = 55;
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
+        this.canvasWidth = game.canvasWidth;
+        this.canvasHeigth = game.canvasHeigth;
         this.texture = new Image();
         this.texture.src= './textures/uNIT/medievalUnit_01.png';
         this.mouseCalibration = {
@@ -55,7 +57,7 @@ export default class Player {
                     //Get the x coordenate to the right of the player. 
                     let xToTheRight = Math.floor((this.position.x + this.width + 1)/this.tileWidth); 
                     //If the tile to the right is walkable keep moving on this axis
-                    if(this.mapLayout[this.coordinate.y][xToTheRight].walkable){
+                    if(this.mapLayout[this.coordinate.y][xToTheRight].walkable && this.position.x + this.width + 2 < this.canvasWidth){
                         this.position.x += (deltaTime * this.speed);
                     }
                 }
@@ -63,7 +65,7 @@ export default class Player {
                     //Get the x coordenate to the left of the player. 
                     let xToTheLeft = Math.floor((this.position.x - 1)/this.tileWidth);
                     //If the tile to the left is walkable keep moving on this axis
-                    if(this.mapLayout[this.coordinate.y][xToTheLeft].walkable){
+                    if(this.mapLayout[this.coordinate.y][xToTheLeft].walkable && this.position.x - 2 > 0){
                         this.position.x -= (deltaTime * this.speed) ;
                     }
                 }
@@ -71,13 +73,13 @@ export default class Player {
             if(yDistance !== 0){
                 if(yDistance > 0){
                     let yToTheDown = Math.floor((this.position.y + this.heigth + 1)/this.tileHeigth);
-                    if(this.mapLayout[yToTheDown][this.coordinate.x].walkable){
+                    if(this.mapLayout[yToTheDown][this.coordinate.x].walkable && this.position.y + this.heigth + 2 < this.canvasHeigth){
                         this.position.y += (deltaTime * this.speed) ;
                     }
                 }
                 if(yDistance < 0){
                     let yToTheAbove = Math.floor((this.position.y - 1)/this.tileHeigth);
-                    if(this.mapLayout[yToTheAbove][this.coordinate.x].walkable){
+                    if(this.mapLayout[yToTheAbove][this.coordinate.x].walkable && this.position.y - 2 > 0){
                         this.position.y -= (deltaTime * this.speed) ;
                     }
                 }

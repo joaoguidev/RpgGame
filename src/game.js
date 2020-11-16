@@ -4,21 +4,21 @@ import Map from "./map.js";
 
 export default class Game {
     constructor(
-        gameWidth,
-        gameHeigth,
+        canvasWidth,
+        canvasHeigth,
         tileWidth,
         tileHeigth,
         totalTilesOn_X,
         totalTilesOn_Y,
-        canvasPositionOnViewport
+        canvasPositionOnViewport,
     ) {
-        this.gameWidth = gameWidth;
-        this.gameHeigth = gameHeigth;
+        this.canvasWidth = canvasWidth;
+        this.canvasHeigth = canvasHeigth;
         this.tileWidth = tileWidth; //px
         this.tileHeigth = tileHeigth; //px
         this.totalTilesOn_X = totalTilesOn_X; //Number of tiles
         this.totalTilesOn_Y = totalTilesOn_Y; //Number of tiles
-       this.canvasPositionOnViewport = canvasPositionOnViewport;
+        this.canvasPositionOnViewport = canvasPositionOnViewport;
         this.mapLoaded = true;
     }
 
