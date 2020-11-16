@@ -4,7 +4,7 @@ import TerrainTile from "./terrainTile.js";
 export default class ForestDense extends TerrainTile{
     constructor(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY) {
         super(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY)
-        this.walkable = true;
+        this.walkable = false;
         this.texture = new Image();
         this.texture.src= './textures/Tile/medievalTile_44.png'
     }
