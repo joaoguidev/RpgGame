@@ -60,16 +60,16 @@ export default class Map {
         }
 
         this.mapLayout = [
-            [this.tileType.sand , this.tileType.pavement, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.waterA, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
             [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.forestDense , this.tileType.forestDense, this.tileType.forestDense, this.tileType.forestDense, this.tileType.grass, this.tileType.forestDense, this.tileType.forestDense, this.tileType.forestDense, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNSWE, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadN, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
         ];
         this.initializeTiles();
     }

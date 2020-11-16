@@ -7,6 +7,8 @@ export default class Player {
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
+        this.texture = new Image();
+        this.texture.src= './textures/uNIT/medievalUnit_01.png';
         this.mouseCalibration = {
             top: game.canvasPositionOnViewport.top,
             left: game.canvasPositionOnViewport.left,
@@ -24,20 +26,17 @@ export default class Player {
             y: 50,
         }
         document.addEventListener("mousedown", event => {
-            this.destination.x = event.clientX - this.mouseCalibration.left;
-            this.destination.y = event.clientY - this.mouseCalibration.top;
+            this.destination.x = event.clientX - (this.mouseCalibration.left + this.width/2);
+            this.destination.y = event.clientY - (this.mouseCalibration.top + this.heigth/2);
         })
     }
-
+//========================draw=========================
     draw(context) {
-        context.fillRect(
-            this.position.x,
-            this.position.y,
-            this.width,
-            this.heigth
-        );
+        // context.drawImage(this.texture, 64,0,   this.position.x, this.position.y, this.width,this.heigth);
+        context.drawImage(this.texture, 45,35, 40,55,this.position.x, this.position.y, this.width, this.heigth);
     }
 
+    //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime){
         let xDistance = this.destination.x - this.position.x;
@@ -46,8 +45,6 @@ export default class Player {
         this.coordinate.y = Math.floor(this.position.y/this.tileHeigth);
         console.log("x: " + this.coordinate.x + "| y: " + this.coordinate.y);
   
-
-            
         if(!deltaTime) {
             return;
         }
@@ -68,7 +65,6 @@ export default class Player {
                     //If the tile to the left is walkable keep moving on this axis
                     if(this.mapLayout[this.coordinate.y][xToTheLeft].walkable){
                         this.position.x -= (deltaTime * this.speed) ;
-                      //  this.position.x + 1;
                     }
                 }
             }
@@ -86,9 +82,6 @@ export default class Player {
                     }
                 }
             }
-
-            // this.position.x += deltaTime * this.speed ;
         }
-       // this.position.x += deltaTime * this.speed ;
     }
 }
