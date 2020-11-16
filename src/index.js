@@ -8,6 +8,7 @@ https://www.youtube.com/watch?v=3EMxBkqC4z0&t=2079s
 import Game from "./game.js";
 let canvas = document.getElementById("gameCanvas");
 let context = canvas.getContext("2d");
+let canvasPositionOnViewport = canvas.getBoundingClientRect();
 let lastTime = 0;
 let deltaTime = 0;
 const TILE_WIDTH = 40; //px
@@ -33,7 +34,8 @@ let game = new Game(
     TILE_WIDTH,
     TILE_HEIGTH,
     TOTALTILESON_X,
-    TOTALTILESON_Y
+    TOTALTILESON_Y,
+    canvasPositionOnViewport
 );
 game.start();
 
