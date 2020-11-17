@@ -53,7 +53,7 @@ function gameLoop(timeStamp) {
     //limit deltatime to 0.1 because if the computer accesssing it is too slow this number will be too large and multiplied by the speed of an object would break the game
     deltaTime = Math.min(deltaTime, 0.1);
     //==========Update and draw the game in here============
-    game.update(deltaTime);
+    game.update(deltaTime, context);
     game.draw(context);
     //Loop again
     window.requestAnimationFrame(gameLoop);

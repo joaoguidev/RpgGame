@@ -32,7 +32,7 @@ export default class CampFire extends TerrainTile {
             } else {
                 this.smokeFrame++;
             }
-        }, 1000 / 5);
+        }, 5000);
     }
     initialize() {
         for (let i = 0; i < 25; i++) {

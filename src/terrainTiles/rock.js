@@ -4,7 +4,7 @@ import TerrainTile from "./terrainTile.js";
 export default class Rock extends TerrainTile{
     constructor(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY) {
         super(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY)
-        this.walkable = false;
+        this.walkable = true;
         this.texture = new Image();
         this.texture.src = './textures/Environment/medievalEnvironment_09.png';
         this.textureBackground = new Image();
