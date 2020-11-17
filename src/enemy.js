@@ -1,37 +1,32 @@
 "use strict";
-export default class Player {
-    constructor(game) {
+export default class Enemy {
+    constructor(game, player, spawnPositionX,spawnPositionY) {
         this.width = 25;
         this.heigth = 25;
         this.speed = 55;
-
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
+        this.player = player;
+        this.chasePlayer = false;
         this.canvasWidth = game.canvasWidth;
         this.canvasHeigth = game.canvasHeigth;
         this.texture = new Image();
-        this.texture.src= './textures/Unit/medievalUnit_01.png';
-        this.mouseCalibration = {
-            top: game.canvasPositionOnViewport.top,
-            left: game.canvasPositionOnViewport.left,
-        }
+        this.texture.src= './textures/Unit/medievalUnit_21.png';
         this.position = {
-            x: this.tileWidth * 4 + this.width,
-            y: this.tileWidth * 9 + this.heigth/2,
+            x: spawnPositionX,
+            y: spawnPositionY
         };
         this.coordinate = {
             x: Math.floor(this.position.x/this.tileWidth),
             y: Math.floor(this.position.y/this.tileHeigth),
         };
         this.destination = {
-            x: this.tileWidth * 4 + this.width,
-            y: this.tileWidth * 9 + this.heigth/2,
+            x: spawnPositionX,
+            y: spawnPositionY
         }
-        document.addEventListener("mousedown", event => {
-            this.destination.x = event.clientX - (this.mouseCalibration.left + this.width/2);
-            this.destination.y = event.clientY - (this.mouseCalibration.top + this.heigth/2);
-        })
+        this.distanceFromPlayer = Math.hypot(player.position.x - this.position.x,player.position.y - this.position.y);
+       
     }
 //========================draw=========================
     draw(context) {
@@ -42,6 +37,16 @@ export default class Player {
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime){
+        this.distanceFromPlayer = Math.floor(Math.hypot(this.player.position.x - this.position.x, this.player.position.y - this.position.y));
+        console.log(this.distanceFromPlayer);
+        if( Math.abs(this.distanceFromPlayer) < this.tileWidth * 2){
+            this.chasePlayer = true;
+        }
+
+        if(this.chasePlayer){
+            this.destination.x = this.player.position.x;
+            this.destination.y = this.player.position.y;
+        }
         let xDistance = this.destination.x - this.position.x;
         let yDistance = this.destination.y - this.position.y;
         this.coordinate.x = Math.floor(this.position.x/this.tileWidth);

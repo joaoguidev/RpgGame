@@ -20,6 +20,10 @@ const CANVAS_HEIGTH = TOTALTILESON_Y * TILE_HEIGTH; //px
 //Setting the canvas size based on the map size
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGTH;
+// window.addEventListener('resize', ()=>{
+//     canvas.height = window.innerHeight;
+//     canvas.width = window.innerWidth;
+// })
 
 //==============================Context Settings============================
 context.font = "bold 10pt sans-serif";

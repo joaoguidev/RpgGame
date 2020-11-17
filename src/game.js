@@ -1,5 +1,6 @@
 "use strict";
 import Player from "./player.js";
+import Enemy from "./enemy.js";
 import Map from "./map.js";
 
 export default class Game {
@@ -21,13 +22,13 @@ export default class Game {
         this.canvasPositionOnViewport = canvasPositionOnViewport;
     }
 
-    async start() {
+    start() {
         //========================Game Objects=========================
-        this.map = await new Map(this);        
-
-        this.player = await new Player(this);
+        this.map = new Map(this);        
+        this.player = new Player(this);
+        this.enemy = new Enemy(this, this.player, 50, 50);
         //Array of game objects that enables it to be update and drawn looping through it. Just add the object here and it will be updated and drawn.
-        this.gameObjects = [this.map, this.player ];
+        this.gameObjects = [this.map, this.player, this.enemy ];
     }
 
     update(deltaTime) {
