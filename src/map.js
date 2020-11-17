@@ -24,6 +24,7 @@ import RoadWS from "./terrainTiles/roadWS.js"
 import WaterA from "./terrainTiles/waterA.js"
 import WaterB from "./terrainTiles/waterB.js"
 import CampFire from "./terrainTiles/campFire.js"
+import BookStandEmpty from "./terrainTiles/bookStandEmpty.js"
 
 export default class Map {
     constructor(game) {
@@ -34,6 +35,7 @@ export default class Map {
         
         this.tileType = {
             bookStand:"bookStand",
+            bookStandEmpty:"bookStandEmpty",
             dirt:"dirt",
             forestDense:"forestDense",
             forestLight:"forestLight",
@@ -62,16 +64,16 @@ export default class Map {
         }
 
         this.mapLayout = [
-            [this.tileType.roadS , this.tileType.bookStand, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.roadNS , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.roadNE , this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass, this.tileType.grass, this.tileType.roadES, this.tileType.roadWE, this.tileType.roadNW, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.bookStand], 
-            [this.tileType.forestLight , this.tileType.grass, this.tileType.roadNSE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadNSWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadW], 
-            [this.tileType.forestDense , this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestDense, this.tileType.forestLight, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.roadES, this.tileType.roadNWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.roadES, this.tileType.roadNW, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.roadNS, this.tileType.grass, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass], 
-            [this.tileType.bookStand , this.tileType.roadN, this.tileType.grass, this.tileType.forestDense, this.tileType.roadN, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadN, this.tileType.bookStand], 
+            [this.tileType.roadS , this.tileType.bookStand, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.roadNS , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS], 
+            [this.tileType.roadNE , this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass, this.tileType.grass, this.tileType.roadES, this.tileType.roadNW, this.tileType.grass, this.tileType.grass, this.tileType.roadNS], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS], 
+            [this.tileType.forestLight , this.tileType.grass, this.tileType.roadNSE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadNSWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadNW], 
+            [this.tileType.forestDense , this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestDense, this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestLight, this.tileType.forestDense, this.tileType.forestLight, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.roadES, this.tileType.roadNWE, this.tileType.roadWE, this.tileType.roadWS, this.tileType.forestDense, this.tileType.forestDense], 
+            [this.tileType.grass , this.tileType.roadES, this.tileType.roadNW, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.forestLight, this.tileType.roadNE, this.tileType.roadWE, this.tileType.roadWS], 
+            [this.tileType.grass , this.tileType.roadNS, this.tileType.grass, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.forestDense, this.tileType.grass, this.tileType.grass, this.tileType.roadNS], 
+            [this.tileType.bookStand , this.tileType.roadN, this.tileType.grass, this.tileType.forestDense, this.tileType.roadN, this.tileType.forestLight, this.tileType.forestDense, this.tileType.grass, this.tileType.bookStand, this.tileType.roadN], 
         ];
         this.initializeTiles();
     }
