@@ -25,6 +25,8 @@ import WaterA from "./terrainTiles/waterA.js"
 import WaterB from "./terrainTiles/waterB.js"
 import CampFire from "./terrainTiles/campFire.js"
 import BookStandEmpty from "./terrainTiles/bookStandEmpty.js"
+import Wood from "./terrainTiles/wood.js"
+import Rock from "./terrainTiles/rock.js"
 
 export default class Map {
     constructor(game) {
@@ -57,19 +59,20 @@ export default class Map {
             roadWES:"roadWES",
             roadWS:"roadWS",
             sand:"sand",
-            terrainTile:"terrainTile",
             waterA:"waterA",
             waterB:"waterB",
             campFire:"campFire",
+            wood:"wood",
+            rock:"rock",
         }
 
         this.mapLayout = [
-            [this.tileType.roadS , this.tileType.bookStand, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.roadNS , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS], 
-            [this.tileType.roadNE , this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass, this.tileType.grass, this.tileType.roadES, this.tileType.roadNW, this.tileType.grass, this.tileType.grass, this.tileType.roadNS], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS], 
+            [this.tileType.roadS , this.tileType.bookStand, this.tileType.grass, this.tileType.forestDense, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS, this.tileType.forestDense, this.tileType.bookStand, this.tileType.roadS], 
+            [this.tileType.roadNS , this.tileType.grass, this.tileType.grass, this.tileType.forestDense, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.grass, this.tileType.roadNS], 
+            [this.tileType.roadNE , this.tileType.roadWE, this.tileType.roadWS, this.tileType.forestLight, this.tileType.grass, this.tileType.roadES, this.tileType.roadNW, this.tileType.forestDense, this.tileType.grass, this.tileType.roadNS], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.rock, this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestLight, this.tileType.wood, this.tileType.grass, this.tileType.roadNS], 
             [this.tileType.forestLight , this.tileType.grass, this.tileType.roadNSE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadNSWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadNW], 
-            [this.tileType.forestDense , this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestDense, this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestLight, this.tileType.forestDense, this.tileType.forestLight, this.tileType.grass], 
+            [this.tileType.forestDense , this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestLight, this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestLight, this.tileType.forestDense, this.tileType.forestLight, this.tileType.grass], 
             [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.roadES, this.tileType.roadNWE, this.tileType.roadWE, this.tileType.roadWS, this.tileType.forestDense, this.tileType.forestDense], 
             [this.tileType.grass , this.tileType.roadES, this.tileType.roadNW, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.forestLight, this.tileType.roadNE, this.tileType.roadWE, this.tileType.roadWS], 
             [this.tileType.grass , this.tileType.roadNS, this.tileType.grass, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.forestDense, this.tileType.grass, this.tileType.grass, this.tileType.roadNS], 
@@ -162,6 +165,15 @@ export default class Map {
                         break;
                     case "campFire":
                         this.mapLayout[tileCoordenateY][tileCoordenateX] = new CampFire(this, currentPosX, currentPosY, tileCoordenateX, tileCoordenateY);
+                        break;
+                    case "bookStandEmpty":
+                        this.mapLayout[tileCoordenateY][tileCoordenateX] = new BookStandEmpty(this, currentPosX, currentPosY, tileCoordenateX, tileCoordenateY);
+                        break;
+                    case "wood":
+                        this.mapLayout[tileCoordenateY][tileCoordenateX] = new Wood(this, currentPosX, currentPosY, tileCoordenateX, tileCoordenateY);
+                        break;
+                    case "rock":
+                        this.mapLayout[tileCoordenateY][tileCoordenateX] = new Rock(this, currentPosX, currentPosY, tileCoordenateX, tileCoordenateY);
                         break;
                     default:
                         console.log("problem here");
