@@ -49,7 +49,7 @@ export default class Enemy {
         this.distanceFromPlayer = Math.floor(Math.hypot(this.player.position.x - this.position.x, this.player.position.y - this.position.y));
         
         //If the enemy gets hearingPower close from the enemy it starts to chase the player
-        if( Math.abs(this.distanceFromPlayer) < hearingPower){
+        if( Math.abs(this.distanceFromPlayer) < this.hearingPower){
             this.chasePlayer = true;
         }
         //If enemy was alerted by the player presence it will chace it.
