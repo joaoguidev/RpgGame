@@ -6,7 +6,7 @@ export default class BookStand extends TerrainTile{
         super(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY)
         this.walkable = true;
         this.texture = new Image();
-        this.texture.src= './textures/Tile/medievalTile_56.png'
+        this.texture.src= './textures/Tile/medievalTile_54.png'
     }
 
     draw(context) {

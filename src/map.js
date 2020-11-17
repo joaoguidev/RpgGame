@@ -23,6 +23,7 @@ import RoadWES from "./terrainTiles/roadWES.js"
 import RoadWS from "./terrainTiles/roadWS.js"
 import WaterA from "./terrainTiles/waterA.js"
 import WaterB from "./terrainTiles/waterB.js"
+import CampFire from "./terrainTiles/campFire.js"
 
 export default class Map {
     constructor(game) {
@@ -57,19 +58,20 @@ export default class Map {
             terrainTile:"terrainTile",
             waterA:"waterA",
             waterB:"waterB",
+            campFire:"campFire",
         }
 
         this.mapLayout = [
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNSE, this.tileType.roadWE, this.tileType.roadNSWE, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.roadES, this.tileType.roadNW, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
-            [this.tileType.grass , this.tileType.grass, this.tileType.grass, this.tileType.forestDense, this.tileType.roadN, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.roadS , this.tileType.bookStand, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.roadNS , this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.roadNE , this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass, this.tileType.grass, this.tileType.roadES, this.tileType.roadWE, this.tileType.roadNW, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.bookStand], 
+            [this.tileType.forestLight , this.tileType.grass, this.tileType.roadNSE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadNSWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadW], 
+            [this.tileType.forestDense , this.tileType.forestLight, this.tileType.roadNS, this.tileType.forestDense, this.tileType.forestLight, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.roadES, this.tileType.roadNWE, this.tileType.roadWE, this.tileType.roadWE, this.tileType.roadWS, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.roadES, this.tileType.roadNW, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass], 
+            [this.tileType.grass , this.tileType.roadNS, this.tileType.grass, this.tileType.forestDense, this.tileType.roadNS, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.grass], 
+            [this.tileType.bookStand , this.tileType.roadN, this.tileType.grass, this.tileType.forestDense, this.tileType.roadN, this.tileType.grass, this.tileType.grass, this.tileType.grass, this.tileType.roadN, this.tileType.bookStand], 
         ];
         this.initializeTiles();
     }
@@ -156,6 +158,9 @@ export default class Map {
                     case "waterB":
                         this.mapLayout[tileCoordenateY][tileCoordenateX] = new WaterB(this, currentPosX, currentPosY, tileCoordenateX, tileCoordenateY);
                         break;
+                    case "campFire":
+                        this.mapLayout[tileCoordenateY][tileCoordenateX] = new CampFire(this, currentPosX, currentPosY, tileCoordenateX, tileCoordenateY);
+                        break;
                     default:
                         console.log("problem here");
                         break;
@@ -168,9 +173,6 @@ export default class Map {
         for (let tileCoordenateY = 0; tileCoordenateY < this.totalTilesOn_Y; tileCoordenateY++) {
             for (let tileCoordenateX = 0; tileCoordenateX < this.totalTilesOn_X; tileCoordenateX++) {
                this.mapLayout[tileCoordenateY][tileCoordenateX].draw(context);
-
-                //context.fillRect(tileCoordenateX * this.tileWidth, 0, 50, 50);
-                //context.fillRect(tileCoordenateX * this.tileWidth, tileCoordenateY * this.tileHeigth,this.tileWidth,this.tileHeigth);
             }
         }
     }
@@ -178,6 +180,11 @@ export default class Map {
     update(deltaTime){
         if(!deltaTime) {
             return;
+        }
+        for (let tileCoordenateY = 0; tileCoordenateY < this.totalTilesOn_Y; tileCoordenateY++) {
+            for (let tileCoordenateX = 0; tileCoordenateX < this.totalTilesOn_X; tileCoordenateX++) {
+               this.mapLayout[tileCoordenateY][tileCoordenateX].update(deltaTime);
+            }
         }
     }
 }

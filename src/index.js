@@ -1,7 +1,7 @@
 "use strict";
 /*Sources: 
-https://spicyyoghurt.com/tutorials/html5-javascript-game-development/create-a-smooth-canvas-animation
 https://kenney.nl/
+https://spicyyoghurt.com/tutorials/html5-javascript-game-development/create-a-smooth-canvas-animation
 https://www.youtube.com/channel/UCHpHBzk4fz3oeQ31hmCreGg/videos
 https://www.youtube.com/watch?v=3EMxBkqC4z0&t=2079s
 */
@@ -13,8 +13,8 @@ let lastTime = 0;
 let deltaTime = 0;
 const TILE_WIDTH = 64; //px
 const TILE_HEIGTH = 64; //px
-const TOTALTILESON_X = 10; //Number of tiles !!!!!!!!!!!!!!!!
-const TOTALTILESON_Y = 10; //Number of tiles !!!!!!!!!!!!!!!!
+const TOTALTILESON_X = 10; //Number of tiles !!!!!!!!!!!!!!!! Rafactor this later !!!!!!
+const TOTALTILESON_Y = 10; //Number of tiles !!!!!!!!!!!!!!!!Rafactor this later !!!!!!
 const CANVAS_WIDTH = TOTALTILESON_X * TILE_WIDTH; //px
 const CANVAS_HEIGTH = TOTALTILESON_Y * TILE_HEIGTH; //px
 //Setting the canvas size based on the map size
@@ -23,7 +23,7 @@ canvas.height = CANVAS_HEIGTH;
 
 //==============================Context Settings============================
 context.font = "bold 10pt sans-serif";
-//CAUTION!!! Improve quality ans sharpness of 'new Image()' on the game. If hit in performance is too great erase it CAUTION!!! 
+//CAUTION!!! Improve quality and sharpness of 'new Image()' on the game. If the hit in performance is too great erase it CAUTION!!! 
 context.imageSmoothingEnabled = true;
 context.imageSmoothingQuality = 'high';
 

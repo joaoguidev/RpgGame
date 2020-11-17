@@ -16,16 +16,16 @@ export default class Player {
             left: game.canvasPositionOnViewport.left,
         }
         this.position = {
-            x: 50,
-            y: 50,
+            x: this.tileWidth * 4 + this.width,
+            y: this.tileWidth * 9 + this.heigth/2,
         };
         this.coordinate = {
             x: Math.floor(this.position.x/this.tileWidth),
             y: Math.floor(this.position.y/this.tileHeigth),
         };
         this.destination = {
-            x: 50,
-            y: 50,
+            x: this.tileWidth * 4 + this.width,
+            y: this.tileWidth * 9 + this.heigth/2,
         }
         document.addEventListener("mousedown", event => {
             this.destination.x = event.clientX - (this.mouseCalibration.left + this.width/2);

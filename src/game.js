@@ -19,16 +19,15 @@ export default class Game {
         this.totalTilesOn_X = totalTilesOn_X; //Number of tiles
         this.totalTilesOn_Y = totalTilesOn_Y; //Number of tiles
         this.canvasPositionOnViewport = canvasPositionOnViewport;
-        this.mapLoaded = true;
     }
 
     async start() {
         //========================Game Objects=========================
-         this.map = await new Map(this);        
+        this.map = await new Map(this);        
 
         this.player = await new Player(this);
         //Array of game objects that enables it to be update and drawn looping through it. Just add the object here and it will be updated and drawn.
-        this.gameObjects = [this.player];
+        this.gameObjects = [this.map, this.player ];
     }
 
     update(deltaTime) {
@@ -36,11 +35,6 @@ export default class Game {
     }
 
     draw(context) {
-        //if (!this.mapLoaded) {
-            this.map.draw(context);
-            this.mapLoaded = true;
-
-       // }
         this.gameObjects.forEach((object) => object.draw(context));
     }
 }
