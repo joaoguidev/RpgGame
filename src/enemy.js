@@ -3,7 +3,7 @@ export default class Enemy {
     constructor(game, player, spawnPositionX,spawnPositionY) {
         this.width = 25;
         this.heigth = 25;
-        this.speed = 55;
+        this.speed = player.speed - 5;
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
