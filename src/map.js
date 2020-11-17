@@ -34,7 +34,8 @@ export default class Map {
         this.tileHeigth = game.tileHeigth;//px
         this.totalTilesOn_X = game.totalTilesOn_X;//Number of tiles
         this.totalTilesOn_Y = game.totalTilesOn_Y;//Number of tiles
-        
+
+        //this section works as a enum in order to be used to designate the tiles and objcts available to be placed mapLayout 
         this.tileType = {
             bookStand:"bookStand",
             bookStandEmpty:"bookStandEmpty",
@@ -66,6 +67,7 @@ export default class Map {
             rock:"rock",
         }
 
+        //This is where the map is drawn. Changing the tyleType here changes it on the map
         this.mapLayout = [
             [this.tileType.roadS , this.tileType.bookStand, this.tileType.grass, this.tileType.forestDense, this.tileType.grass, this.tileType.bookStand, this.tileType.roadS, this.tileType.forestDense, this.tileType.bookStand, this.tileType.roadS], 
             [this.tileType.roadNS , this.tileType.grass, this.tileType.grass, this.tileType.forestDense, this.tileType.grass, this.tileType.grass, this.tileType.roadNS, this.tileType.forestDense, this.tileType.grass, this.tileType.roadNS], 
@@ -85,9 +87,9 @@ export default class Map {
         let currentPosX = 0;
         let currentPosY = 0;
         
+        //This is used to build the map object taking in consideration the tile types assigned on the mapLayout above
         for (let tileCoordenateY = 0; tileCoordenateY < this.totalTilesOn_Y; tileCoordenateY++){
             currentPosY = tileCoordenateY * this.tileHeigth;
-            
             for (let tileCoordenateX = 0; tileCoordenateX < this.totalTilesOn_X; tileCoordenateX++) {
                 currentPosX = tileCoordenateX * this.tileWidth;
                 switch (this.mapLayout[tileCoordenateY][tileCoordenateX]) {
@@ -184,6 +186,8 @@ export default class Map {
     }
 
     draw(context) {
+
+        //Go through all tiles and draw it
         for (let tileCoordenateY = 0; tileCoordenateY < this.totalTilesOn_Y; tileCoordenateY++) {
             for (let tileCoordenateX = 0; tileCoordenateX < this.totalTilesOn_X; tileCoordenateX++) {
                this.mapLayout[tileCoordenateY][tileCoordenateX].draw(context);
@@ -195,6 +199,7 @@ export default class Map {
         if(!deltaTime) {
             return;
         }
+        //Go through all tiles and update it
         for (let tileCoordenateY = 0; tileCoordenateY < this.totalTilesOn_Y; tileCoordenateY++) {
             for (let tileCoordenateX = 0; tileCoordenateX < this.totalTilesOn_X; tileCoordenateX++) {
                this.mapLayout[tileCoordenateY][tileCoordenateX].update(deltaTime);

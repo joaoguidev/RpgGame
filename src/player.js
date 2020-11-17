@@ -42,14 +42,18 @@ export default class Player {
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime){
-        let xDistance = this.destination.x - this.position.x;
-        let yDistance = this.destination.y - this.position.y;
+        
+              if(!deltaTime) {
+                  return;
+              }
+        let xDistance = this.destination.x - this.position.x;//Keep track of the distance between player click on the canvas and current position of the player
+        let yDistance = this.destination.y - this.position.y;//Keep track of the distance between player click on the canvas and current position of the player
+        
+        //Based on the player position and how big are the tiles it is possible to extract in what coordinate of the 10x10 grid the player is in
         this.coordinate.x = Math.floor(this.position.x/this.tileWidth);
         this.coordinate.y = Math.floor(this.position.y/this.tileHeigth);
-  
-        if(!deltaTime) {
-            return;
-        }
+
+        //If destination is not the same as the current position it means that there are a distance to be traveled. Inside this if the x and y axis are deat separatly like x = left and right and y up and down
         if(this.destination.x !== this.position.x || this.destination.y !== this.position.y){
 
             if(xDistance !== 0){
@@ -72,11 +76,13 @@ export default class Player {
             }
             if(yDistance !== 0){
                 if(yDistance > 0){
+                    //Get the y coordenate bellow of the player. 
                     let yToTheDown = Math.floor((this.position.y + this.heigth + 1)/this.tileHeigth);
                     if(this.mapLayout[yToTheDown][this.coordinate.x].walkable && this.position.y + this.heigth + 2 < this.canvasHeigth){
                         this.position.y += (deltaTime * this.speed) ;
                     }
                 }
+                //Get the y coordenate above of the player. 
                 if(yDistance < 0){
                     let yToTheAbove = Math.floor((this.position.y - 1)/this.tileHeigth);
                     if(this.mapLayout[yToTheAbove][this.coordinate.x].walkable && this.position.y - 2 > 0){

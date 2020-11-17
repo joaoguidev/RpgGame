@@ -8,6 +8,7 @@ export default class Enemy {
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
         this.player = player;
+        this.hearingPower= this.tileWidth * 2;//This is how far the player mst be to alert the enemy. In px.
         this.chasePlayer = false;
         this.canvasWidth = game.canvasWidth;
         this.canvasHeigth = game.canvasHeigth;
@@ -37,26 +38,31 @@ export default class Enemy {
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime){
+        if(!deltaTime) {
+            return;
+        }
+        //Keep track of the distance between player click on the canvas and current position of the player
+        let xDistance = this.destination.x - this.position.x;
+        let yDistance = this.destination.y - this.position.y;
+
+        //Keeps track of the player distance.
         this.distanceFromPlayer = Math.floor(Math.hypot(this.player.position.x - this.position.x, this.player.position.y - this.position.y));
-        console.log(this.distanceFromPlayer);
-        if( Math.abs(this.distanceFromPlayer) < this.tileWidth * 2){
+        
+        //If the enemy gets hearingPower close from the enemy it starts to chase the player
+        if( Math.abs(this.distanceFromPlayer) < hearingPower){
             this.chasePlayer = true;
         }
-
+        //If enemy was alerted by the player presence it will chace it.
         if(this.chasePlayer){
             this.destination.x = this.player.position.x;
             this.destination.y = this.player.position.y;
         }
-        let xDistance = this.destination.x - this.position.x;
-        let yDistance = this.destination.y - this.position.y;
+        //Based on the player position and how big are the tiles it is possible to extract in what coordinate of the 10x10 grid the player is in
         this.coordinate.x = Math.floor(this.position.x/this.tileWidth);
         this.coordinate.y = Math.floor(this.position.y/this.tileHeigth);
   
-        if(!deltaTime) {
-            return;
-        }
+        //If destination is not the same as the current position it means that there are a distance to be traveled. Inside this if the x and y axis are deat separatly like x = left and right and y up and down
         if(this.destination.x !== this.position.x || this.destination.y !== this.position.y){
-
             if(xDistance !== 0){
                 if(xDistance > 0){
                     //Get the x coordenate to the right of the player. 
@@ -77,11 +83,13 @@ export default class Enemy {
             }
             if(yDistance !== 0){
                 if(yDistance > 0){
+                    //Get the y coordenate bellow of the player. 
                     let yToTheDown = Math.floor((this.position.y + this.heigth + 1)/this.tileHeigth);
                     if(this.mapLayout[yToTheDown][this.coordinate.x].walkable && this.position.y + this.heigth + 2 < this.canvasHeigth){
                         this.position.y += (deltaTime * this.speed) ;
                     }
                 }
+                //Get the y coordenate above of the player. 
                 if(yDistance < 0){
                     let yToTheAbove = Math.floor((this.position.y - 1)/this.tileHeigth);
                     if(this.mapLayout[yToTheAbove][this.coordinate.x].walkable && this.position.y - 2 > 0){
