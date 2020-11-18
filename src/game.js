@@ -102,6 +102,7 @@ export default class Game {
                 context.fill();
                 context.fillStyle = "white";
                 context.textAlign = "center";
+                context.font = "32px Arial";
                 context.fillText(
                     "Click To Start The Game",
                     this.canvasWidth/2,
@@ -115,6 +116,7 @@ export default class Game {
                 context.fill();
                 context.fillStyle = "white";
                 context.textAlign = "center";
+                context.font = "32px Arial";
                 context.fillText(
                     "Game Over! Click to try again",
                     this.canvasWidth/2,
@@ -128,6 +130,7 @@ export default class Game {
                 context.fill();
                 context.fillStyle = "white";
                 context.textAlign = "center";
+                context.font = "32px Arial";
                 context.fillText(
                     "Click to read the collected lenses",
                     this.canvasWidth/2,
