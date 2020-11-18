@@ -104,7 +104,7 @@ export default class Game {
                 context.textAlign = "center";
                 context.font = "32px Arial";
                 context.fillText(
-                    "Click To Start The Game",
+                    "Click To Get The Five Lenses",
                     this.canvasWidth/2,
                     this.canvasWidth/2
                   );
