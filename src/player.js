@@ -6,8 +6,8 @@ export default class Player {
         this.heigth = 25;
         this.speed = 55;
         this.health = 100;
-        this.damage = 10;
-        this.hitSpeed = 3; //One hit each 3 seconds
+        this.damage = 20;
+        this.hitSpeed = 2; //One hit each 3 seconds
         this.collisionBox;
         this.hitCoolDown = 0;//Time counter from one hit to the next
         this.tileWidth = game.tileWidth; //px
@@ -49,7 +49,11 @@ export default class Player {
 //========================draw=========================
     draw(context) {
         context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
-       // context.fillStyle = 'blue';
+        context.beginPath();
+        context.fillStyle = 'blue';
+        context.fillRect(this.position.x, this.position.y - 5, this.width * (this.health/100), 3);
+        context.closePath();
+        
         //context.fill(this.collisionBox);
     }
 

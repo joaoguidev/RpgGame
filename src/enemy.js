@@ -4,7 +4,7 @@ export default class Enemy {
         this.game = game;
         this.width = 25;
         this.heigth = 25;
-        this.health = 10;
+        this.health = 100;
         this.damage = 10;
         this.collisionBox;
         this.hitSpeed = 5; //One hit each 3 seconds
@@ -82,6 +82,11 @@ export default class Enemy {
             this.gotHit.x = null;
             this.gotHit.y = null;
         }
+
+        context.beginPath();
+        context.fillStyle = 'red';
+        context.fillRect(this.position.x, this.position.y - 5, this.width * (this.health/100), 3);
+        context.closePath();
     }
     
     //========================update=========================
