@@ -10,7 +10,15 @@ export default class RoadE extends TerrainTile{
     }
 
     draw(context) {
-        context.drawImage(this.texture, this.position.x, this.position.y, this.tileWidth,this.tileHeigth);
+        
+        if(this.terrainReveled){
+            context.drawImage(this.texture, this.position.x, this.position.y, this.tileWidth,this.tileHeigth);
+        } else {
+            context.beginPath();
+            context.fillStyle = 'gray';
+            context.fillRect(this.position.x, this.position.y, this.tileWidth, this.tileHeigth);
+            context.closePath();
+        }
     }
 
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 

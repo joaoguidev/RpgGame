@@ -54,12 +54,17 @@ export default class Enemy {
     
     
     initialize(){
-        this.texture.src= './textures/Unit/medievalUnit_21.png';
     }
     
     //========================draw=========================
     draw(context) {
-        
+        if(this.chasePlayer){
+            this.texture.src= './textures/Unit/medievalUnit_21.png';
+            context.beginPath();
+            context.fillStyle = 'red';
+            context.fillRect(this.position.x, this.position.y - 5, this.width * (this.health/100), 3);
+            context.closePath();
+        }
         if(this.health <= 0){
             context.save();
             context.translate(this.positionCenter.x, this.positionCenter.y);
@@ -83,10 +88,8 @@ export default class Enemy {
             this.gotHit.y = null;
         }
 
-        context.beginPath();
-        context.fillStyle = 'red';
-        context.fillRect(this.position.x, this.position.y - 5, this.width * (this.health/100), 3);
-        context.closePath();
+        
+
     }
     
     //========================update=========================

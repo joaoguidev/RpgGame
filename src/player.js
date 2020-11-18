@@ -49,35 +49,56 @@ export default class Player {
 //========================draw=========================
     draw(context) {
         context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
+        //----------------------healthbar------------------
         context.beginPath();
         context.fillStyle = 'blue';
         context.fillRect(this.position.x, this.position.y - 5, this.width * (this.health/100), 3);
         context.closePath();
-        
-        //context.fill(this.collisionBox);
     }
 
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime){
+        if(!deltaTime) {
+            return;
+        }
         this.positionCenter.x = this.position.x + (this.width/2);
         this.positionCenter.y = this.position.y + (this.width/2);
         this.xE -= deltaTime
-       console.log(" Player health: " + this.health + " Enemy health: " + this.game.enemies[3].health );
-    //    console.log( "P Cooldown: " + this.xE  +" Player health: " + this.health + " Enemy health: " + this.game.enemies[3].health );
-        this.collisionBox = new Path2D();
-        this.collisionBox.arc(this.position.x + this.width/2,this.position.y + this.width/2, this.width/2, 0, 2 * Math.PI);  
-
+        //----------------------Attack Logic-------------------
         if(this.hitCoolDown  > 0 ) {
             this.hitCoolDown -= deltaTime;
             if(this.hitCoolDown < 0){
                 this.hitCoolDown = 0;
             }
         }
-
-        if(!deltaTime) {
-            return;
+        //--------------------------------Map Reveal----------------------------
+        
+        this.mapLayout[this.coordinate.y][this.coordinate.x].terrainReveled = true;
+        if(this.coordinate.y + 1 < this.game.totalTilesOn_Y){
+            this.mapLayout[(this.coordinate.y) + 1][this.coordinate.x].terrainReveled = true;
         }
+        if(this.coordinate.y - 1 >= 0){
+            this.mapLayout[(this.coordinate.y - 1)][this.coordinate.x].terrainReveled = true;
+        }
+        if(this.coordinate.x + 1 < this.game.totalTilesOn_X){
+            this.mapLayout[this.coordinate.y][(this.coordinate.x) + 1].terrainReveled = true;
+        }
+        if(this.coordinate.x - 1 >= 0){
+            this.mapLayout[this.coordinate.y][(this.coordinate.x - 1)].terrainReveled = true;
+        }
+
+
+
+        
+        
+        
+        
+        
+        
+        //--------------------------------Collision Logic----------------------------
+        this.collisionBox = new Path2D();
+        this.collisionBox.arc(this.position.x + this.width/2,this.position.y + this.width/2, this.width/2, 0, 2 * Math.PI);  
         let xDistance = this.destination.x - this.position.x;//Keep track of the distance between player click on the canvas and current position of the player
         let yDistance = this.destination.y - this.position.y;//Keep track of the distance between player click on the canvas and current position of the player
         let xRightLock = false
@@ -157,6 +178,10 @@ export default class Player {
                 if(yDistance < 0){
                     let yToTheAbove = Math.floor((this.position.y - 1)/this.tileHeigth);
                     if(this.mapLayout[yToTheAbove][this.coordinate.x].walkable && this.position.y - 2 > 0){
+
+
+
+
                         for (let i = 0; i < this.game.enemies.length; i++) {
                             if((this.game.enemies[i].distanceFromPlayer <= this.width && this.game.enemies[i].vCollisionNorm.y > 0)){
                                 yAboveLock = true;

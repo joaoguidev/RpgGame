@@ -5,6 +5,8 @@ export default class TerrainTile {
         this.tileHeigth = map.tileHeigth;//px
         this.totalTilesOn_X = map.totalTilesOn_X;//Number of tiles
         this.totalTilesOn_Y = map.totalTilesOn_Y;//Number of tiles
+        this.terrainReveled = false;
+        this.interactive = false;
         this.position = {
             x: currentPositionX,
             y: currentPositionY,
