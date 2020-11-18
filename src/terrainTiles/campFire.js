@@ -35,11 +35,11 @@ export default class CampFire extends TerrainTile {
         }, 5000);
     }
     initialize() {
-        for (let i = 0; i < 25; i++) {
-            let textureSmoke = new Image();
-            textureSmoke.src = "./textures/Black_smoke/blackSmoke" + i + ".png";
-            this.textureSmokeFrameArr[i] = textureSmoke;
-        }
+    //     for (let i = 0; i < 25; i++) {
+    //         let textureSmoke = new Image();
+    //         textureSmoke.src = "./textures/Black_smoke/blackSmoke" + i + ".png";
+    //         this.textureSmokeFrameArr[i] = textureSmoke;
+    //     }
     }
 
     draw(context) {

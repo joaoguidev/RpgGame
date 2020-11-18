@@ -4,9 +4,11 @@ import TerrainTile from "./terrainTile.js";
 export default class BookStand extends TerrainTile{
     constructor(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY) {
         super(map, currentPositionX, currentPositionY, currentCoordinateX, currentCoordinateY)
+        this.game = map.game;
         this.walkable = false;
         this.interactive = true;
         this.texture = new Image();
+        this.counted = false;
         this.texture.src= './textures/Tile/medievalTile_54.png'
         this.gotIt = {
             x: null,
@@ -15,6 +17,7 @@ export default class BookStand extends TerrainTile{
         document.addEventListener("mousedown", event => {
             this.gotIt.x = event.clientX;
             this.gotIt.y = event.clientY;
+
 
         })
     }
@@ -26,6 +29,10 @@ export default class BookStand extends TerrainTile{
             if(this.terrainReveled){
                 this.texture.src= './textures/Tile/medievalTile_53.png'
                 this.walkable = true;
+                if(!this.counted){
+                    this.game.player.booksCollected += 1;
+                    this.counted = true;
+                }
 
             }
             this.gotIt.x = null;

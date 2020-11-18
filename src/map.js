@@ -30,6 +30,7 @@ import Rock from "./terrainTiles/rock.js"
 
 export default class Map {
     constructor(game) {
+        this.game = game;
         this.tileWidth = game.tileWidth;//px
         this.tileHeigth = game.tileHeigth;//px
         this.totalTilesOn_X = game.totalTilesOn_X;//Number of tiles

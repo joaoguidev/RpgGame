@@ -7,7 +7,8 @@ export default class Player {
         this.speed = 55;
         this.health = 100;
         this.damage = 30;
-        this.hitSpeed = 2; //One hit each 3 seconds
+        this.booksCollected = 0;
+        this.hitSpeed = 1; //One hit each 3 seconds
         this.collisionBox;
         this.hitCoolDown = 0;//Time counter from one hit to the next
         this.tileWidth = game.tileWidth; //px
@@ -59,6 +60,12 @@ export default class Player {
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime){
+        if(this.booksCollected === 5){
+            this.game.currentGameState = this.game.gameStates.finished
+        }
+        if(this.health === 90){
+            this.game.currentGameState = this.game.gameStates.gameOver
+        }
         if(!deltaTime) {
             return;
         }
