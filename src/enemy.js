@@ -4,12 +4,11 @@ export default class Enemy {
         this.game = game;
         this.width = 25;
         this.heigth = 25;
-        this.health = 100;
+        this.health = 10;
         this.damage = 10;
         this.collisionBox;
         this.hitSpeed = 5; //One hit each 3 seconds
         this.hitCoolDown = 0;//Time counter from one hit to the next
-        //this.speed = game.player.speed - 5;
         this.speed = game.player.speed * 0.5;
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
@@ -60,9 +59,20 @@ export default class Enemy {
     
     //========================draw=========================
     draw(context) {
-        //context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
-        context.fillStyle = 'red';
-        context.fill(this.collisionBox);
+        
+        if(this.health <= 0){
+            context.save();
+            context.translate(this.positionCenter.x, this.positionCenter.y);
+            context.rotate(90 * Math.PI / 180);
+            context.translate(-this.position.x, -this.position.y);
+            
+            context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
+            context.setTransform(1, 0, 0, 1, 0, 0);
+            context.restore();
+            this.speed = 0;
+        } else {
+            context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
+        }
         
         if(context.isPointInPath(this.collisionBox, this.gotHit.x, this.gotHit.y)) {
             if(this.game.player.hitCoolDown === 0  && this.distanceFromPlayer <= this.width + 2){
@@ -71,13 +81,17 @@ export default class Enemy {
             }
             this.gotHit.x = null;
             this.gotHit.y = null;
-       }
+        }
     }
     
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime, context){
+        if(!deltaTime) {
+            return;
+        }
         
+
         //========Cool down after attack=====
         if(this.hitCoolDown  > 0 ) {
             this.hitCoolDown -= deltaTime;
@@ -114,9 +128,6 @@ export default class Enemy {
         this.collisionBox.arc(this.position.x + this.width/2,this.position.y + this.width/2, this.width/2, 0, 2 * Math.PI);  
         
 
-        if(!deltaTime) {
-            return;
-        }
         //Keep track of the distance between player click on the canvas and current position of the player
         let xDistance = this.destination.x - this.position.x;
         let yDistance = this.destination.y - this.position.y;

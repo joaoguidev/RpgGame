@@ -48,9 +48,9 @@ export default class Player {
     }
 //========================draw=========================
     draw(context) {
-       // context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
-        context.fillStyle = 'blue';
-        context.fill(this.collisionBox);
+        context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
+       // context.fillStyle = 'blue';
+        //context.fill(this.collisionBox);
     }
 
     //========================update=========================
@@ -99,6 +99,9 @@ export default class Player {
                            if((this.game.enemies[i].distanceFromPlayer <= this.width && this.game.enemies[i].vCollisionNorm.x < 0)){
                                 xRightLock = true;
                             } 
+                            if(this.game.enemies[i].health <= 0 && this.game.enemies[i].distanceFromPlayer <= this.width){
+                                xRightLock = false;
+                            }
                     }
                     if(!xRightLock){
                         this.position.x += (deltaTime * this.speed);
@@ -115,6 +118,9 @@ export default class Player {
                         for (let i = 0; i < this.game.enemies.length; i++) {
                             if((this.game.enemies[i].distanceFromPlayer <= this.width && this.game.enemies[i].vCollisionNorm.x > 0)){
                                 xLeftLock = true;
+                            }
+                            if(this.game.enemies[i].health <= 0 && this.game.enemies[i].distanceFromPlayer <= this.width){
+                                xLeftLock = false;
                             }
                         }
                         if(!xLeftLock){
@@ -133,6 +139,9 @@ export default class Player {
                             if((this.game.enemies[i].distanceFromPlayer <= this.width && this.game.enemies[i].vCollisionNorm.y < 0)){
                                 yBellowLock = true;
                             } 
+                            if(this.game.enemies[i].health <= 0 && this.game.enemies[i].distanceFromPlayer <= this.width){
+                                yBellowLock = false;
+                            }
                         }
                         if(!yBellowLock){
                             this.position.y += (deltaTime * this.speed) ;
@@ -147,6 +156,9 @@ export default class Player {
                         for (let i = 0; i < this.game.enemies.length; i++) {
                             if((this.game.enemies[i].distanceFromPlayer <= this.width && this.game.enemies[i].vCollisionNorm.y > 0)){
                                 yAboveLock = true;
+                            }
+                            if(this.game.enemies[i].health <= 0){
+                                yAboveLock = false;
                             }
                         }
                         if(!yAboveLock){
