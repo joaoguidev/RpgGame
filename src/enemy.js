@@ -5,10 +5,10 @@ export default class Enemy {
         this.width = 25;
         this.heigth = 25;
         this.health = 100;
-        this.damage = 0;
+        this.damage = 10;
         this.collisionBox;
-        this.hitSpeed = 3; //One hit each 3 seconds
-        this.hitCoolDown = this.hitSpeed;//Time counter from one hit to the next
+        this.hitSpeed = 5; //One hit each 3 seconds
+        this.hitCoolDown = 0;//Time counter from one hit to the next
         //this.speed = game.player.speed - 5;
         this.speed = game.player.speed * 0.5;
         this.tileWidth = game.tileWidth; //px
@@ -63,25 +63,57 @@ export default class Enemy {
         //context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
         context.fillStyle = 'red';
         context.fill(this.collisionBox);
-  
+        
+        if(context.isPointInPath(this.collisionBox, this.gotHit.x, this.gotHit.y)) {
+            if(this.game.player.hitCoolDown === 0  && this.distanceFromPlayer <= this.width + 2){
+                this.health -= this.game.player.damage;
+                this.game.player.hitCoolDown = this.game.player.hitSpeed;
+            }
+            this.gotHit.x = null;
+            this.gotHit.y = null;
+       }
     }
     
     //========================update=========================
     //Update the position taking in consideration the elapsed time since the last frame. This makes the movement coherent with processing in different speeds. 
     update(deltaTime, context){
         
+        //========Cool down after attack=====
+        if(this.hitCoolDown  > 0 ) {
+            this.hitCoolDown -= deltaTime;
+            if(this.hitCoolDown < 0){
+                this.hitCoolDown = 0;
+            }
+        }
+
+
+       // console.log("Player health: " + this.game.player.health + " Enemy health: " + this.health );
+
+        if(this.distanceFromPlayer <= this.width + 2 && this.hitCoolDown === 0) {
+            this.game.player.health -= this.damage;
+            this.hitCoolDown = this.hitSpeed;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         this.positionCenter.x = this.position.x + (this.width/2);
         this.positionCenter.y = this.position.y + (this.width/2);
 
         this.collisionBox = new Path2D();
         this.collisionBox.arc(this.position.x + this.width/2,this.position.y + this.width/2, this.width/2, 0, 2 * Math.PI);  
         
-        if(this.game.player.hitCoolDown === 0  ){
-            
 
-
-            this.game.player.hitCoolDown = this.game.player.hitSpeed;
-        }
         if(!deltaTime) {
             return;
         }

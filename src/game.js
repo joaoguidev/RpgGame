@@ -38,13 +38,13 @@ export default class Game {
         
     }
 
+    update(deltaTime, context) {
+        this.gameObjects.forEach((object) => object.update(deltaTime));
+    }
     update(deltaTime) {
         this.gameObjects.forEach((object) => object.update(deltaTime));
     }
 
-    update(deltaTime, context) {
-        this.gameObjects.forEach((object) => object.update(deltaTime));
-    }
 
     draw(context) {
         this.gameObjects.forEach((object) => object.draw(context));

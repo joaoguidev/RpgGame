@@ -27,9 +27,9 @@ canvas.height = CANVAS_HEIGTH;
 
 //==============================Context Settings============================
 context.font = "bold 10pt sans-serif";
-//CAUTION!!! Improve quality and sharpness of 'new Image()' on the game. If the hit in performance is too great erase it CAUTION!!! 
+//CAUTION!!! Improve quality and sharpness of 'new Image()' on the game. If the hit in performance is too great erase it CAUTION!!!
 context.imageSmoothingEnabled = true;
-context.imageSmoothingQuality = 'high';
+context.imageSmoothingQuality = "high";
 
 //==============================Game Start============================
 let game = new Game(
@@ -39,7 +39,7 @@ let game = new Game(
     TILE_HEIGTH,
     TOTALTILESON_X,
     TOTALTILESON_Y,
-    canvasPositionOnViewport,
+    canvasPositionOnViewport
 );
 game.start();
 

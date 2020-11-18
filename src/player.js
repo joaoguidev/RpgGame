@@ -6,10 +6,10 @@ export default class Player {
         this.heigth = 25;
         this.speed = 55;
         this.health = 100;
-        this.damage = 0;
+        this.damage = 10;
         this.hitSpeed = 3; //One hit each 3 seconds
         this.collisionBox;
-        this.hitCoolDown = this.hitSpeed;//Time counter from one hit to the next
+        this.hitCoolDown = 0;//Time counter from one hit to the next
         this.tileWidth = game.tileWidth; //px
         this.tileHeigth = game.tileHeigth; //px
         this.mapLayout = game.map.mapLayout;
@@ -37,7 +37,7 @@ export default class Player {
             x: this.tileWidth * 4 + this.width,
             y: this.tileWidth * 9 + this.heigth/2,
         }
-        // this.xE = 0;
+        //this.xE = 100;
         // this.yE = 0;
         document.addEventListener("mousedown", event => {
             this.destination.x = event.clientX - (this.mouseCalibration.left + this.width/2);
@@ -58,13 +58,14 @@ export default class Player {
     update(deltaTime){
         this.positionCenter.x = this.position.x + (this.width/2);
         this.positionCenter.y = this.position.y + (this.width/2);
-
-
+        this.xE -= deltaTime
+       console.log(" Player health: " + this.health + " Enemy health: " + this.game.enemies[3].health );
+    //    console.log( "P Cooldown: " + this.xE  +" Player health: " + this.health + " Enemy health: " + this.game.enemies[3].health );
         this.collisionBox = new Path2D();
         this.collisionBox.arc(this.position.x + this.width/2,this.position.y + this.width/2, this.width/2, 0, 2 * Math.PI);  
 
         if(this.hitCoolDown  > 0 ) {
-            this.hitCoolDown =- deltaTime;
+            this.hitCoolDown -= deltaTime;
             if(this.hitCoolDown < 0){
                 this.hitCoolDown = 0;
             }
