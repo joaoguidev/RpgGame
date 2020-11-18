@@ -20,16 +20,18 @@ const CANVAS_HEIGTH = TOTALTILESON_Y * TILE_HEIGTH; //px
 //Setting the canvas size based on the map size
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGTH;
-// window.addEventListener('resize', ()=>{
-//     canvas.height = window.innerHeight;
-//     canvas.width = window.innerWidth;
-// })
+window.addEventListener('resize', ()=>{
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+})
 
 //==============================Context Settings============================
 context.font = "bold 10pt sans-serif";
 //CAUTION!!! Improve quality and sharpness of 'new Image()' on the game. If the hit in performance is too great erase it CAUTION!!!
 context.imageSmoothingEnabled = true;
 context.imageSmoothingQuality = "high";
+
+//context.translate(canvasPositionOnViewport.left, canvasPositionOnViewport.top);
 
 //==============================Game Start============================
 let game = new Game(

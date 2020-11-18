@@ -43,6 +43,7 @@ export default class Player {
         document.addEventListener("mousedown", event => {
             this.destination.x = event.clientX - (this.mouseCalibration.left + this.width/2);
             this.destination.y = event.clientY - (this.mouseCalibration.top + this.heigth/2);
+            console.log("X: " + event.clientX + " Y: " + event.clientY);
             // this.xE = event.clientX;
             // this.yE = event.clientY;
         })
@@ -63,7 +64,7 @@ export default class Player {
         if(this.booksCollected === 5){
             this.game.currentGameState = this.game.gameStates.finished
         }
-        if(this.health === 90){
+        if(this.health <= 0){
             this.game.currentGameState = this.game.gameStates.gameOver
         }
         if(!deltaTime) {
