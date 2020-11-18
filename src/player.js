@@ -6,7 +6,7 @@ export default class Player {
         this.heigth = 25;
         this.speed = 55;
         this.health = 100;
-        this.damage = 20;
+        this.damage = 30;
         this.hitSpeed = 2; //One hit each 3 seconds
         this.collisionBox;
         this.hitCoolDown = 0;//Time counter from one hit to the next

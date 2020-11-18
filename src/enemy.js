@@ -5,9 +5,9 @@ export default class Enemy {
         this.width = 25;
         this.heigth = 25;
         this.health = 100;
-        this.damage = 10;
+        this.damage = 5;
         this.collisionBox;
-        this.hitSpeed = 5; //One hit each 3 seconds
+        this.hitSpeed = 3; //One hit each 3 seconds
         this.hitCoolDown = 0;//Time counter from one hit to the next
         this.speed = game.player.speed * 0.5;
         this.tileWidth = game.tileWidth; //px
@@ -64,17 +64,18 @@ export default class Enemy {
             context.fillStyle = 'red';
             context.fillRect(this.position.x, this.position.y - 5, this.width * (this.health/100), 3);
             context.closePath();
+           
         }
         if(this.health <= 0){
             context.save();
             context.translate(this.positionCenter.x, this.positionCenter.y);
             context.rotate(90 * Math.PI / 180);
             context.translate(-this.position.x, -this.position.y);
-            
             context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
             context.setTransform(1, 0, 0, 1, 0, 0);
             context.restore();
             this.speed = 0;
+            this.health = 0;
         } else {
             context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
         }
