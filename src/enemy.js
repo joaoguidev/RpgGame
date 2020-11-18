@@ -106,6 +106,7 @@ export default class Enemy {
             this.hitCoolDown -= deltaTime;
             if(this.hitCoolDown < 0){
                 this.hitCoolDown = 0;
+                this.damage = 0;
             }
         }
 
