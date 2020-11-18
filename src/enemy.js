@@ -5,7 +5,7 @@ export default class Enemy {
         this.width = 25;
         this.heigth = 25;
         this.health = 100;
-        this.damage = 10;
+        this.damage = 5;
         this.collisionBox;
         this.hitSpeed = 2; //One hit each 3 seconds
         this.hitCoolDown = 0;//Time counter from one hit to the next
