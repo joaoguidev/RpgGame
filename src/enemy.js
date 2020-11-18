@@ -76,6 +76,7 @@ export default class Enemy {
             context.restore();
             this.speed = 0;
             this.health = 0;
+            this.damage = 0;
         } else {
             context.drawImage(this.texture, 45, 35, 40, 55, this.position.x, this.position.y, this.width, this.heigth);
         }
@@ -106,7 +107,6 @@ export default class Enemy {
             this.hitCoolDown -= deltaTime;
             if(this.hitCoolDown < 0){
                 this.hitCoolDown = 0;
-                this.damage = 0;
             }
         }
 
