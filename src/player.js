@@ -147,9 +147,9 @@ export default class Player {
                             if((this.game.enemies[i].distanceFromPlayer <= this.width && this.game.enemies[i].vCollisionNorm.y > 0)){
                                 yAboveLock = true;
                             }
-                            if(!yAboveLock){
-                                this.position.y -= (deltaTime * this.speed) ;
-                            }
+                        }
+                        if(!yAboveLock){
+                            this.position.y -= (deltaTime * this.speed) ;
                         }
                     }
                 }

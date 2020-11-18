@@ -88,10 +88,6 @@ export default class Enemy {
         //Keep track of the distance between player click on the canvas and current position of the player
         let xDistance = this.destination.x - this.position.x;
         let yDistance = this.destination.y - this.position.y;
-        let xRightLock = false
-        let xLeftLock = false
-        let yRightLock = false
-        let yLeftLock = false
         this.distancecollision = Math.floor(Math.hypot(this.game.player.positionCenter.x - this.positionCenter.x, this.game.player.positionCenter.y - this.positionCenter.y ));
        // console.log(distancecollision);
         this.vCollisionNorm = {x: (this.game.player.positionCenter.x - this.positionCenter.x) / this.distancecollision, y: (this.game.player.positionCenter.y - this.positionCenter.y) / this.distancecollision};

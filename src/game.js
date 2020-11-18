@@ -27,11 +27,14 @@ export default class Game {
         this.map = new Map(this);        
         this.player = new Player(this);
         this.enemies = [
-            new Enemy(this, 50, 50),
-            new Enemy(this, 300, 50),
+            new Enemy(this, 50, 80),
+            new Enemy(this, 350, 80),
+            new Enemy(this, 550, 80),
+            new Enemy(this, 500, 500),
+            new Enemy(this, 70, 500),
         ]
         //Array of game objects that enables it to be update and drawn looping through it. Just add the object here and it will be updated and drawn.
-        this.gameObjects = [this.map, this.player, this.enemies[0], this.enemies[1] ];
+        this.gameObjects = [this.map, this.player, this.enemies[0], this.enemies[1], this.enemies[2], this.enemies[3], this.enemies[4] ];
         
     }
 
