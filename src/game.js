@@ -32,9 +32,9 @@ export default class Game {
            if(this.currentGameState === this.gameStates.menu){
                 this.currentGameState = this.gameStates.running;
                 this.start();
-           }
-           if(this.currentGameState === this.gameStates.finished){
-                alert("To the website")
+            }
+            if(this.currentGameState === this.gameStates.finished){
+                location.href="./site/index.html"
             }
             if(this.currentGameState === this.gameStates.gameOver){
                 location.reload()
@@ -104,7 +104,7 @@ export default class Game {
                 context.textAlign = "center";
                 context.font = "32px Arial";
                 context.fillText(
-                    "Click To Get The Five Lenses",
+                    "Click To Get the Five Lenses",
                     this.canvasWidth/2,
                     this.canvasWidth/2
                   );

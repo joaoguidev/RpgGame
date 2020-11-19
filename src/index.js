@@ -28,10 +28,10 @@ window.addEventListener('resize', ()=>{
 //==============================Context Settings============================
 context.font = "bold 10pt sans-serif";
 //CAUTION!!! Improve quality and sharpness of 'new Image()' on the game. If the hit in performance is too great erase it CAUTION!!!
+//context.translate(canvasPositionOnViewport.left, canvasPositionOnViewport.top);
 context.imageSmoothingEnabled = true;
 context.imageSmoothingQuality = "high";
 
-//context.translate(canvasPositionOnViewport.left, canvasPositionOnViewport.top);
 
 //==============================Game Start============================
 let game = new Game(
